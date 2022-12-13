@@ -2,6 +2,7 @@
 @import url('https://fonts.googleapis.com/css?family=Inter');
 .container {
     position: relative;
+    padding: 10px;
     z-index: 1000;
     width: 384px;
     height: 460px;
@@ -11,9 +12,12 @@
     border-radius: 16px;
     border-width: 1px;
     border-color: red;
-    padding: 10px;
     margin: 0 20px;
-    clip-path: polygon(0 0, 100% 0, 100% 88%, 72% 100%, 0 100%, 0% 50%);
+    clip-path: polygon(0 0, 100% 0, 100% 83.5%, 73% 100%, 0 100%, 0% 50%);
+    background-image: url('../images/cardBackground.svg');
+    .border {
+        position: absolute;
+    }
     .mainMenu {
         height: 15%;
         display: flex;

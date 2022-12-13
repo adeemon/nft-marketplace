@@ -2,6 +2,7 @@ import { Product } from "./testData";
 import Style from '../styles/ProductCard.module.scss'
 import Image from "next/image";
 import ethIcon from '../images/ethereum (1) 1.svg'
+import border from '../images/cardBackground.svg'
 
 type ImageInfo = {
     src: string
@@ -14,6 +15,7 @@ const myLoader = ({src} : ImageInfo) => {
 export default function ProductCard ({name, avatar, price, nftName, id, image} : Product) {
     return (
         <div className={Style.container}>
+            
             <div className={Style.mainMenu}>
                 <div className={Style.priceInfo}>
                     <p className={Style.bid}>Price</p>
@@ -46,3 +48,5 @@ export default function ProductCard ({name, avatar, price, nftName, id, image} :
         </div>
     )
 }
+
+//<Image src={border} alt='Card border' width={384} height={460} className={Style.border} />
