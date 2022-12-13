@@ -1,0 +1,104 @@
+@import url('https://fonts.cdnfonts.com/css/poppins');
+@import url('https://fonts.googleapis.com/css?family=Inter');
+.container {
+    position: relative;
+    z-index: 1000;
+    width: 384px;
+    height: 460px;
+    font-family: 'Poppins', sans-serif;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(5px);
+    border-radius: 16px;
+    border-width: 1px;
+    border-color: red;
+    padding: 10px;
+    margin: 0 20px;
+    clip-path: polygon(0 0, 100% 0, 100% 88%, 72% 100%, 0 100%, 0% 50%);
+    .mainMenu {
+        height: 15%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-bottom: 20px;
+        .priceInfo {
+            padding: 5px;
+            .bid {
+                margin: 0 0 0 3px;
+                font-style: normal;
+                font-weight: 500;
+                font-size: 14px;
+                line-height: 20px;
+            }
+            .price {
+                margin: 0;
+                color: #15BFFD;
+                font-weight: 600;
+                font-size: 16px;
+                line-height: 24px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: 5px;
+            }
+        }
+        .button {
+            border: none;
+            background-color: #15BFFD;
+            border-radius: 20px;
+            width: 111px;
+            height: 36px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 20px;
+            color: white;
+            font-family: 'Inter';
+            font-style: normal;
+            font-weight: 100;
+            font-size: 16px;
+            line-height: 24px;
+        }
+    }
+    .image {
+        height: 65%;
+        img {
+            border-radius: 20px;
+            width: 100%;
+            height: 100%;
+        }
+    }
+    .nft {
+        display: flex;
+        img {
+            width: 24px;
+            height: 24px;
+            border-radius: 30px
+        }
+        .nftInfo {
+            padding: 10px 5px;
+            width: 40%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            .nftName {
+                height: 10%;
+                margin: 0;
+                font-weight: 500;
+                font-size: 16px;
+                line-height: 24px;
+            }
+            .author {
+                font-weight: 500;
+                font-size: 14px;
+                line-height: 24px;
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                gap: 10px;
+            }
+        }
+    }
+}
