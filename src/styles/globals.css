@@ -27,4 +27,15 @@ a {
 body {
     width: 100vw;
     height: 100vh;
+    background-color: #090C2C;
+    z-index: 10;
+    overflow: hidden;
+}
+
+div {
+    transition: .2s linear;
+}
+
+button:hover {
+    cursor: pointer;
 }
