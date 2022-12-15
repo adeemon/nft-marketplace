@@ -1,0 +1,13 @@
+@mixin blueBoxShadow {
+    box-shadow: 0 0 0 2px #15BFFD, 0 0 0 4px #3A2F28;
+}
+
+@mixin whiteBoxShadow {
+    box-shadow: 0 0 0 2px white, 0 0 0 4px #3A2F28;
+}
+
+@mixin centeredFlex {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
