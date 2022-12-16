@@ -57,6 +57,10 @@ export const selectAllProducts = (state : RootState) => {
     return state.productsContainer.products;
 }
 
+export const selectIsFiled = (state : RootState) => {
+    return state.productsContainer.isFilled;
+}
+
 export const {
     removeProduct,
     addProduct,
