@@ -13,7 +13,7 @@ export const favouritesSlice = createSlice({
     initialState,
     reducers: {
         addFavourite: (state, action : PayloadAction<Product>) => {
-            state.products.push(action.payload);
+            state.products.unshift(action.payload);
         },
         removeFavourite: (state, action : PayloadAction<number>) => {
             state.products = state.products.filter(element => {
