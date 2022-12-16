@@ -2,7 +2,7 @@ import Head from "next/head";
 import Image from 'next/image';
 import Link from "next/link";
 import React, { useEffect } from "react";
-import { Modal } from 'antd';
+import { Button, Modal } from 'antd';
 
 import starPath from '../images/star.svg'
 import facebookIconPath from '../images/facebook.svg';
@@ -59,15 +59,19 @@ export default function MainContainer ({children, keywords} : MainContainerProps
                     <Link href="/"><Image src={logo} alt="Company logo" 
                     width={191} height={48} /></Link>
                 </div>
-                <div className={styles["header__cart"]}>
-                    <button aria-label="Открыть корзину" onClick={showModal}> 
+                <div className={styles["header__cart"]} onClick={showModal}>
+                    <button aria-label="Открыть корзину"> 
                         <Image src={cartIconPath} alt="Cart icon" 
                         width={16} height={16} />
                     </button>
                 </div>
             </header>
             <Modal className={styles.modal} title='Cart' open={isModalOpened} 
-            onOk={handleOk} onCancel={handleCancel}>
+            onOk={handleOk} onCancel={handleCancel}
+            footer={[
+                <Button key="back" onClick={handleCancel}>Cancel</Button>,
+                <Button key="submit" type="primary" onClick={handleOk}>Place order</Button>
+            ]}>
                 <CartContent />
             </Modal>
             <main className={styles.main}>
