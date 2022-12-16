@@ -8,17 +8,29 @@ import { InferGetStaticPropsType } from 'next'
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { selectAllFavourites } from '../slices/FavouritesSlice'
-import { fillTheState, selectAllProducts } from '../slices/ProductsContainerSlice'
+import { fillTheState, selectAllProducts, selectIsFiled } from '../slices/ProductsContainerSlice'
 import { useAppDispatch, useAppSelector } from '../store/store'
+import { checkIsContains } from '../slices/CartSlice'
 
 export default function Home({products} : InferGetStaticPropsType<typeof getStaticProps>) {
   const favourites = useAppSelector(selectAllFavourites);
   const productsT = useAppSelector(selectAllProducts);
   const dispatch = useAppDispatch();
-  
+  const isFilled = useAppSelector(selectIsFiled);
+
   useEffect(() => {
+    if (isFilled && favourites.length > 0) {
+      let temp : Product[] = [];
+      products.forEach(product => {
+        if (!checkIsContains(favourites, product.id)) {
+          temp.push(product);
+        }
+        dispatch(fillTheState(temp))
+      })
+    } else
     dispatch(fillTheState(products))
   },[])
+
   return (
     <MempozedMainContainer keywords={"kekw"}>
       {[...(favourites.map(product => {
