@@ -1,4 +1,5 @@
 import Style from '../styles/ProductCard.module.scss';
+import React, { useEffect } from 'react';
 import Image from "next/image";
 import ethIcon from '../images/ethereum (1) 1.svg';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -21,6 +22,8 @@ type ImageInfo = {
 export const myLoader = ({src} : ImageInfo) => {
     return src;
 }
+
+export const MemoizedCard = React.memo(ProductCard);
 
 export default function ProductCard ({name, avatar, price, nftName, id, image, isFavourite} : ProductInfo) {
     const dispatch = useAppDispatch();
@@ -48,6 +51,11 @@ export default function ProductCard ({name, avatar, price, nftName, id, image, i
             dispatch(addProduct({name, avatar, price, nftName, id, image}));
         }
     }
+
+    useEffect(()=> {
+        console.log('Card rendered');
+    })
+
     return (
         <>
         <Link href={`/products/${id}`} >

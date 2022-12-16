@@ -2,7 +2,7 @@ import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 import MempozedMainContainer from '../components/MainContainer'
-import ProductCard from '../components/ProductCard'
+import ProductCard, { MemoizedCard } from '../components/ProductCard'
 import { ContainerContent, Product } from '../types/Types'
 import { InferGetStaticPropsType } from 'next'
 import React, { useEffect } from 'react'
@@ -34,9 +34,9 @@ export default function Home({products} : InferGetStaticPropsType<typeof getStat
   return (
     <MempozedMainContainer keywords={"kekw"}>
       {[...(favourites.map(product => {
-    return <ProductCard {...product} isFavourite={true} key={product.id} />
+    return <MemoizedCard {...product} isFavourite={true} key={product.id} />
   })), ...(productsT.map(product => {
-    return <ProductCard {...product} isFavourite={false} key={product.id} />
+    return <MemoizedCard {...product} isFavourite={false} key={product.id} />
   }))]}
     </MempozedMainContainer>
   )
