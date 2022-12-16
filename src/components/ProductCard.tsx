@@ -1,5 +1,5 @@
 import Image from "next/image";
-import React, { useEffect } from 'react';
+import React, { useEffect, MouseEvent } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {faHeart} from '@fortawesome/free-regular-svg-icons';
 import { useDispatch, useSelector } from "react-redux";
@@ -29,7 +29,7 @@ export const MemoizedCard = React.memo(ProductCard);
 
 export default function ProductCard ({name, avatar, price, nftName, id, image, isFavourite} : ProductInfo) {
     const dispatch = useAppDispatch();
-    
+
     const onBuyHandler = (e : MouseEvent) => {
         const product = {name, avatar, price, nftName, id, image};
         dispatch(addProductToCart(product))
