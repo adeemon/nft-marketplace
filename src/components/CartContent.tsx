@@ -32,7 +32,7 @@ export default function CartContent () {
                 </div>
         </div>);
     })
-    
+
     return (
         <div className={styles.container}>
             {productsArrayToRender}
