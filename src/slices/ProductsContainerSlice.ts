@@ -1,7 +1,5 @@
 import { createSlice, current, PayloadAction } from "@reduxjs/toolkit";
-import produce from "immer"
-import { useDispatch } from "react-redux";
-import { deflateSync } from "zlib";
+
 import { RootState } from "../store/store";
 import { Product } from "../types/Types";
 import { StateType } from "../types/Types";
@@ -11,24 +9,7 @@ type ProductsStateType = StateType & {isFilled : boolean};
 
 
 const initialState : ProductsStateType = {
-    products: [
-        // {
-        //     name: "Dana Prosacco",
-        //     avatar: "https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/96.jpg",
-        //     price: "2",
-        //     nftName: "officia",
-        //     image: "https://loremflickr.com/640/480",
-        //     id: 1
-        //    },
-        //    {
-        //     name: "Della Lind",
-        //     avatar: "https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/494.jpg",
-        //     price: "6",
-        //     nftName: "sunt",
-        //     image: "https://loremflickr.com/640/480",
-        //     id: 2
-        //    },
-    ],
+    products: [],
     isFilled: false,
 }
 

@@ -1,19 +1,21 @@
-import Style from '../styles/ProductCard.module.scss';
-import React, { useEffect } from 'react';
 import Image from "next/image";
-import ethIcon from '../images/ethereum (1) 1.svg';
+import React, { useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {faHeart} from '@fortawesome/free-regular-svg-icons';
+import { useDispatch, useSelector } from "react-redux";
+import { Button } from 'antd'
+import Link from 'next/link';
+import ReactVisibilitySensor from 'react-visibility-sensor';
+
+import styles from '../styles/productCard.module.scss';
+import ethIcon from '../images/ethereum (1) 1.svg';
 import { library, config } from "@fortawesome/fontawesome-svg-core";
 import { addFavourite, removeFavourite } from '../slices/FavouritesSlice'
-import { useDispatch, useSelector } from "react-redux";
 import { ProductInfo } from '../types/Types';
 import { addProduct, removeProduct } from '../slices/ProductsContainerSlice';
 import { useAppDispatch } from '../store/store';
 import { addProductToCart } from '../slices/CartSlice';
 import { EthIcon } from './Eth';
-import { Button } from 'antd'
-import Link from 'next/link';
 
 type ImageInfo = {
     src: string
@@ -27,11 +29,7 @@ export const MemoizedCard = React.memo(ProductCard);
 
 export default function ProductCard ({name, avatar, price, nftName, id, image, isFavourite} : ProductInfo) {
     const dispatch = useAppDispatch();
-    const onClickHandler = () => {
-        console.log(id);
-        location.href=`/products/${id}`
-    }
-
+    
     const onBuyHandler = (e : MouseEvent) => {
         const product = {name, avatar, price, nftName, id, image};
         dispatch(addProductToCart(product))
@@ -53,52 +51,50 @@ export default function ProductCard ({name, avatar, price, nftName, id, image, i
     }
 
     useEffect(()=> {
-        console.log('Card rendered');
+        console.log(`Card ${id + ' '+name} rendered`);
     })
 
     return (
-        <>
         <Link href={`/products/${id}`} >
-            <div className={Style.container} >       
-                <div className={Style.mainMenu}>
-                    <div className={Style.priceInfo}>
-                        <div className={Style.bid}>Price</div>
-                        <div className={Style.price}>
+            <div className={styles.container} >       
+                <div className={styles.mainMenu}>
+                    <div className={styles.priceInfo}>
+                        <div className={styles.bid}>Price</div>
+                        <div className={styles.price}>
                             <EthIcon />
                             {price} ETH
                             </div>
                     </div>
                     <Button type="default" 
-                    className={isFavourite ? Style.markedFavourite : Style.favouriteButton}
+                    className={isFavourite ? styles.markedFavourite : styles.favouriteButton}
                     onClick={(e) => onFavouriteHandler(e)} 
                     area-label={'Set as favourite'}>
 
                     <FontAwesomeIcon icon={faHeart} />
                     </Button>
-                    <Button type="primary" className={Style.button} 
+                    <Button type="primary" className={styles.button} 
                     onClick={e => onBuyHandler(e)} aria-label={'Buy button'}>
                         Buy
                     </Button>
                 </div>
-                <div className={Style.image}>
+                <div className={styles.image}>
                     <Image src={image} loader={myLoader} alt={{name} + 'image'} width={100} height={100} />
                 </div>
-                <div className={Style.nft}>
-                    <div className={Style.nftInfo}>
-                    <div className={Style.nftName}>
+                <div className={styles.nft}>
+                    <div className={styles.nftInfo}>
+                    <div className={styles.nftName}>
                             {nftName}
                         </div>
-                    <div className={Style.author}>
+                    <div className={styles.author}>
                         <Image src={avatar} loader={myLoader} alt={{name} + 'image'} width={100} height={100} />
-                        <div className={Style.authorName}>
+                        <div className={styles.authorName}>
                             {name}
                         </div>
                     </div>
                     </div>          
                 </div>
             </div>
-            </Link>
-        </>
+        </Link>
     )
 }
 

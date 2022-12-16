@@ -1,12 +1,10 @@
-import Head from 'next/head'
-import Image from 'next/image'
-import styles from '../styles/Home.module.css'
-import MempozedMainContainer from '../components/MainContainer'
-import ProductCard, { MemoizedCard } from '../components/ProductCard'
-import { ContainerContent, Product } from '../types/Types'
+import ReactVisibilitySensor from 'react-visibility-sensor'
 import { InferGetStaticPropsType } from 'next'
 import React, { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+
+import MempozedMainContainer from '../components/MainContainer'
+import { MemoizedCard } from '../components/ProductCard'
+import { Product } from '../types/Types'
 import { selectAllFavourites } from '../slices/FavouritesSlice'
 import { fillTheState, selectAllProducts, selectIsFiled } from '../slices/ProductsContainerSlice'
 import { useAppDispatch, useAppSelector } from '../store/store'
@@ -14,9 +12,22 @@ import { checkIsContains } from '../slices/CartSlice'
 
 export default function Home({products} : InferGetStaticPropsType<typeof getStaticProps>) {
   const favourites = useAppSelector(selectAllFavourites);
-  const productsT = useAppSelector(selectAllProducts);
+  const productsSelected = useAppSelector(selectAllProducts);
   const dispatch = useAppDispatch();
   const isFilled = useAppSelector(selectIsFiled);
+  
+  const favouritesToRender = favourites.map((product) => {
+    return (
+        <MemoizedCard {...product} isFavourite={true} key={product.id} />
+    )
+  })
+
+  const productsToRender = productsSelected.map((product) => {
+    return (
+      <MemoizedCard {...product} isFavourite={false} key={product.id} />
+      )
+    }
+  )
 
   useEffect(() => {
     if (isFilled && favourites.length > 0) {
@@ -32,12 +43,8 @@ export default function Home({products} : InferGetStaticPropsType<typeof getStat
   },[])
 
   return (
-    <MempozedMainContainer keywords={"kekw"}>
-      {[...(favourites.map(product => {
-    return <MemoizedCard {...product} isFavourite={true} key={product.id} />
-  })), ...(productsT.map(product => {
-    return <MemoizedCard {...product} isFavourite={false} key={product.id} />
-  }))]}
+    <MempozedMainContainer keywords={"Nft list"}>
+      {[...favouritesToRender, ...productsToRender]}
     </MempozedMainContainer>
   )
 }

@@ -1,4 +1,5 @@
 import Image from 'next/image';
+
 import ethIcon from '../images/ethereum (1) 1.svg';
 
 export function EthIcon () {

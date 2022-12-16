@@ -2,11 +2,11 @@ import { Button } from 'antd';
 import { DeleteOutlined } from '@ant-design/icons';
 import Link from 'next/link';
 import { useEffect } from 'react';
+
 import { removeProduct, selectCartProducts } from '../slices/CartSlice'
 import { useAppDispatch, useAppSelector } from '../store/store'
-import styles from '../styles/CartContent.module.scss'
+import styles from '../styles/cartContent.module.scss'
 import { EthIcon } from './Eth';
-
 
 export default function CartContent () {
     const products = useAppSelector(selectCartProducts);
@@ -32,6 +32,7 @@ export default function CartContent () {
                 </div>
         </div>);
     })
+    
     return (
         <div className={styles.container}>
             {productsArrayToRender}
