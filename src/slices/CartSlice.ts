@@ -1,6 +1,5 @@
 import { createSlice, current, PayloadAction } from "@reduxjs/toolkit";
-import produce from "immer"
-import { deflateSync } from "zlib";
+
 import { RootState } from "../store/store";
 import { Product } from "../types/Types";
 import { StateType } from "../types/Types";
