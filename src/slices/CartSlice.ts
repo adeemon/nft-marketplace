@@ -41,7 +41,7 @@ export const cartSlice = createSlice({
 })
 
 
-const checkIsContains = (arrayOfObj : Array<Product>, id : number) => {
+export const checkIsContains = (arrayOfObj : Array<Product>, id : number) => {
     let output = false;
     arrayOfObj.forEach((element) => {
         if (element?.id === id) {
