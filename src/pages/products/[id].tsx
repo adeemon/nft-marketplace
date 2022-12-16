@@ -43,7 +43,7 @@ export default function ProductPage({name, avatar, price, nftName, id, image} :
                     <div className={styles.name}>
                         {nftName}
                     </div>
-                    <p>
+                    <p className={styles.by}>
                         BY
                     </p>
                     <div className={styles.author}>
