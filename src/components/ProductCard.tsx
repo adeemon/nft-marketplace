@@ -7,7 +7,7 @@ import { Button } from 'antd'
 import Link from 'next/link';
 import ReactVisibilitySensor from 'react-visibility-sensor';
 
-import styles from '/styles/productCard.module.scss';
+import styles from '../styles/productCard.module.scss';
 import ethIcon from '../images/ethereum (1) 1.svg';
 import { library, config } from "@fortawesome/fontawesome-svg-core";
 import { addFavourite, removeFavourite } from '../slices/FavouritesSlice'
