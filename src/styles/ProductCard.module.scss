@@ -5,7 +5,7 @@
     position: relative;
     padding: 10px;
     z-index: 1000;
-    width: 384px;
+    width: clamp(300px, 90vw, 385px);
     height: 460px;
     font-family: 'Poppins', sans-serif;
     background: rgba(255, 255, 255, 0.05);
@@ -15,6 +15,7 @@
     margin: 0 20px;
     clip-path: polygon(0 0, 100% 0, 100% 83.3%, 72.2% 100%, 0 100%, 0% 50%);
     background-image: url('../images/cardBackground.svg');
+    background-repeat: no-repeat;
     &:hover {
         @include blueBoxShadow;
         cursor: pointer;
