@@ -93,34 +93,7 @@
     }
 }
 
-@media screen and (max-width: 400px) {
-    .header {
-        padding: 0 5px;
-        gap: 5px;
-        &__cart {
-            width: 35px;
-            height: 35px;
-            margin: 0;
-        }
-        & :global .ant-btn {
-            width: 35px;
-            height: 35px;
-            margin: 0;
-        }
-        &__logo {
-            width: 80%;
-            height: 80%;
-            margin-right: auto;
-            padding: 10px;
-            &:hover {
-                @include blueBoxShadow;
-            }
-        }
-    }
-}
-
 .main {
-    height: 1000px;
     width: 100vw;
     display: flex;
     flex-wrap: wrap;
@@ -135,6 +108,15 @@
     &::-webkit-scrollbar-thumb {
         background-color: #15BFFD;
         border-radius: 20px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .main {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: row;
     }
 }
 
