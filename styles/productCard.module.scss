@@ -16,10 +16,6 @@
     clip-path: polygon(0 0, 100% 0, 100% 83.3%, 72.2% 100%, 0 100%, 0% 50%);
     background-image: url('../images/cardBackground.svg');
     background-repeat: no-repeat;
-    &:hover {
-        @include blueBoxShadow;
-        cursor: pointer;
-    }
     .border {
         position: absolute;
     }
@@ -139,5 +135,12 @@
                 gap: 10px;
             }
         }
+    }
+}
+
+@media screen and (min-width: 321px) {
+    .container:hover {
+        @include blueBoxShadow;
+        cursor: pointer;
     }
 }

@@ -11,40 +11,25 @@ import { useAppDispatch, useAppSelector } from '../store/store'
 import { checkIsContains } from '../slices/CartSlice'
 
 export default function Home({products} : InferGetStaticPropsType<typeof getStaticProps>) {
-  const favourites = useAppSelector(selectAllFavourites);
+  const favouritesSelected = useAppSelector(selectAllFavourites);
   const productsSelected = useAppSelector(selectAllProducts);
   const dispatch = useAppDispatch();
-  const isFilled = useAppSelector(selectIsFiled);
   
-  const favouritesToRender = favourites.map((product) => {
+  const arrayToRender = productsSelected.map((product) => {
+    const isFavourite = checkIsContains(favouritesSelected, product.id);
     return (
-        <MemoizedCard {...product} isFavourite={true} key={product.id} />
-    )
-  })
-
-  const productsToRender = productsSelected.map((product) => {
-    return (
-      <MemoizedCard {...product} isFavourite={false} key={product.id} />
+      <MemoizedCard {...product} isFavourite={isFavourite} key={product.id} />
       )
     }
   )
 
   useEffect(() => {
-    if (isFilled && favourites.length > 0) {
-      let temp : Product[] = [];
-      products.forEach(product => {
-        if (!checkIsContains(favourites, product.id)) {
-          temp.push(product);
-        }
-        dispatch(fillTheState(temp))
-      })
-    } else
     dispatch(fillTheState(products))
   },[])
 
   return (
     <MempozedMainContainer keywords={"Nft list"}>
-      {[...favouritesToRender, ...productsToRender]}
+      {arrayToRender}
     </MempozedMainContainer>
   )
 }

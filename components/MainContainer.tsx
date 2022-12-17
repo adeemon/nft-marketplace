@@ -18,6 +18,7 @@ import {
     toggleCartWindow 
 } from "../slices/CartSlice";
 import CartContent from "./CartContent";
+import { HeartOutlined, ShoppingCartOutlined } from "@ant-design/icons";
 
 type MainContainerProps = {
     children: React.ReactNode,
@@ -34,7 +35,7 @@ export default function MainContainer ({children, keywords} : MainContainerProps
         console.log('Main container rendered');
     })
 
-    const showModal = () => {
+    const handleCartClick = () => {
         dispatch(toggleCartWindow(true));
     }
     const closeModal = () => {
@@ -58,12 +59,12 @@ export default function MainContainer ({children, keywords} : MainContainerProps
                         <Link href="/"><Image src={logo} alt="Company logo" 
                         width={191} height={48} /></Link>
                     </div>
-                    <div className={styles["header__cart"]} onClick={showModal}>
-                        <button aria-label="Открыть корзину"> 
-                            <Image src={cartIconPath} alt="Cart icon" 
-                            width={16} height={16} />
-                        </button>
-                    </div>
+                    <Link href="/favourites" >
+                        <Button type="primary" shape="circle" 
+                        className={styles.favouriteButton} icon={<HeartOutlined />} />     
+                    </Link>
+                    <Button type="primary" shape="circle" 
+                    className={styles["header__cart"]} icon={<ShoppingCartOutlined />} onClick={handleCartClick}/>
                 </header>
                 <Modal className={styles.modal} title='Cart' open={isModalOpened} 
                 onOk={handleOk} onCancel={handleCancel}
