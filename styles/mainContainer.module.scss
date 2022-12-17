@@ -46,18 +46,10 @@
         @include centeredFlex;
     }
     &__cart {
+        padding: 0;
         width: 54px;
         height: 54px;
-        margin: 10px;
-        border-radius: 30px;
         background-color: #15BFFD;
-        button {
-            border: none;
-            background: transparent;
-        }
-        img {
-            fill: white;
-        }
         &:hover {
             @include whiteBoxShadow;
         }
@@ -71,7 +63,6 @@
     }
     & :global .ant-btn {
         justify-self: flex-end;
-        padding: 5px;
         width: 54px;
         height: 54px;
         display: flex;
@@ -89,6 +80,9 @@
                 height: 80%;
                 width: 80%;
             }
+        }
+        &:hover {
+            @include whiteBoxShadow;
         }
     }
 }
@@ -165,8 +159,6 @@
         }
     }
 }
-
-.modal {}
 
 .effects {
     position: absolute;
