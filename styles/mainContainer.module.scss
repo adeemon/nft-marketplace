@@ -35,13 +35,14 @@
     width: 100vw;
     padding: 0 20px;
     display: flex;
-    justify-content: space-between;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 10px;
     z-index: 100;
      :hover {
         cursor: pointer;
     }
     div {
-        margin: 5px 0;
         @include centeredFlex;
     }
     &__cart {
@@ -62,15 +63,37 @@
         }
     }
     &__logo {
+        margin-right: auto;
         padding: 10px;
         &:hover {
             @include blueBoxShadow;
         }
     }
+    & :global .ant-btn {
+        justify-self: flex-end;
+        padding: 5px;
+        width: 54px;
+        height: 54px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #15BFFD;
+        & .anticon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 60%;
+            width: 60%;
+            color: black;
+            svg {
+                height: 80%;
+                width: 80%;
+            }
+        }
+    }
 }
 
 .main {
-    height: 1000px;
     width: 100vw;
     display: flex;
     flex-wrap: wrap;
@@ -85,6 +108,15 @@
     &::-webkit-scrollbar-thumb {
         background-color: #15BFFD;
         border-radius: 20px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .main {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: row;
     }
 }
 
