@@ -10,7 +10,6 @@ import twitterIconPath from '../images/twitter.svg';
 import linkedInIconPath from '../images/linkedin.svg';
 import logo from '../images/logo.svg';
 import styles from'../styles/mainContainer.module.scss';
-import cartIconPath from '../images/cart-shopping-solid.svg';
 import { useAppDispatch, useAppSelector } from "../store/store";
 import { 
     createOrder, 

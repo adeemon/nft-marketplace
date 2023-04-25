@@ -5,6 +5,7 @@ import {faHeart} from '@fortawesome/free-regular-svg-icons';
 import { Button } from 'antd'
 import Link from 'next/link';
 import ReactVisibilitySensor from 'react-visibility-sensor';
+import { useInView } from 'react-intersection-observer';
 
 import styles from '../styles/productCard.module.scss';
 import { addFavourite, removeFavourite } from '../slices/FavouritesSlice'
@@ -43,50 +44,63 @@ export default function ProductCard ({name, avatar, price, nftName, id, image, i
         }
     }
 
+
+    const { ref, inView, entry } = useInView({
+        threshold: 0,
+      });
+
     useEffect(()=> {
-        console.log(`Card ${id + ' '+name} rendered`);
+        console.log(inView ? 'rendered with content':'rendered without content')
+        console.log(`Card ${id + ' '+name} rendered ${inView}`);
     })
 
-    return (
-        <Link href={`/products/${id}`} >
-            <div className={styles.container} >       
-                <div className={styles.mainMenu}>
-                    <div className={styles.priceInfo}>
-                        <div className={styles.bid}>Price</div>
-                        <div className={styles.price}>
-                            <EthIcon />
-                            {price} ETH
-                        </div>
-                    </div>
-                    <Button type="default" 
-                    className={isFavourite ? styles.markedFavourite : styles.favouriteButton}
-                    onClick={(e) => onFavouriteHandler(e)} 
-                    area-label={'Set as favourite'}>
-                    <FontAwesomeIcon icon={faHeart} />
-                    </Button>
-                    <Button type="primary" className={styles.button} 
-                    onClick={e => onBuyHandler(e)} aria-label={'Buy button'}>
-                        Buy
-                    </Button>
-                </div>
-                <div className={styles.image}>
-                    <Image src={image} loader={myLoader} alt={{name} + 'image'} width={100} height={100} />
-                </div>
-                <div className={styles.nft}>
-                    <div className={styles.nftInfo}>
-                    <div className={styles.nftName}>
-                            {nftName}
-                        </div>
-                    <div className={styles.author}>
-                        <Image src={avatar} loader={myLoader} alt={{name} + 'image'} width={100} height={100} />
-                        <div className={styles.authorName}>
-                            {name}
-                        </div>
-                    </div>
-                    </div>          
+    let componentRender = inView ? 
+    <Link href={`/products/${id}`} >
+    <div className={styles.container} >       
+        <div className={styles.mainMenu}>
+            <div className={styles.priceInfo}>
+                <div className={styles.bid}>Price</div>
+                <div className={styles.price}>
+                    <EthIcon />
+                    {price} ETH
                 </div>
             </div>
-        </Link>
+            <Button type="default" 
+            className={isFavourite ? styles.markedFavourite : styles.favouriteButton}
+            onClick={(e) => onFavouriteHandler(e)} 
+            area-label={'Set as favourite'}>
+            <FontAwesomeIcon icon={faHeart} />
+            </Button>
+            <Button type="primary" className={styles.button} 
+            onClick={e => onBuyHandler(e)} aria-label={'Buy button'}>
+                Buy
+            </Button>
+        </div>
+        <div className={styles.image}>
+            <Image src={image} loader={myLoader} alt={{name} + 'image'} width={100} height={100} />
+        </div>
+        <div className={styles.nft}>
+            <div className={styles.nftInfo}>
+            <div className={styles.nftName}>
+                    {nftName}
+                </div>
+            <div className={styles.author}>
+                <Image src={avatar} loader={myLoader} alt={{name} + 'image'} width={100} height={100} />
+                <div className={styles.authorName}>
+                    {name}
+                </div>
+            </div>
+            </div>          
+        </div>
+    </div>
+</Link>
+:
+<div className={styles.container}></div>
+
+    return (
+        <div ref={ref}>
+            {componentRender}:
+        </div>
     )
 }
 
