@@ -99,7 +99,7 @@ export default function ProductCard ({name, avatar, price, nftName, id, image, i
 
     return (
         <div ref={ref}>
-            {componentRender}:
+            {componentRender}
         </div>
     )
 }
